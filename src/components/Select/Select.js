@@ -3,62 +3,52 @@ import styled from 'styled-components';
 
 import { COLORS } from '../../constants';
 import Icon from '../Icon';
-import { getDisplayedValue, getTextWidth } from "./Select.helpers";
+import { getDisplayedValue } from "./Select.helpers";
 
 const Wrapper = styled.div`
+  position: relative;
   color: ${COLORS.gray700};
   &:hover {
     color: black;
   }
 `;
 
-const SelectWrapper = styled.select`
-  margin-left: 16px;
-  border-radius: 8px;
-  border: none;
-  appearance: none;
+const PresentationalBit = styled.div`
+  padding: 12px 16px;
+  color: currentColor;
   background-color: ${COLORS.transparentGray15};
-
+  border-radius: 8px;
+  width: fit-content;
   font-family: Roboto,sans-serif;
   font-weight: 400;
+`;
 
-  padding: 12px var(--horizontalPadding);
-  padding-right: calc(var(--horizontalPadding) + var(--arrowWidth) + var(--horizontalPadding));
-  color: currentColor;
-  width: var(--selectWidth);
+const NativeSelect = styled.select`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 `;
 
 const IconWrapper = styled.div`
   display: inline-block;
-  position: relative;
-  right: calc(var(--horizontalPadding) + var(--arrowWidth));
-  top: 8px;
-  margin-right: calc(-(var(--horizontalPadding) + var(--arrowWidth)));
-  pointer-events: none;
-`;
-
-const LabelWrapper = styled.label`
 `;
 
 const Select = ({ label, value, onChange, children }) => {
   const text = getDisplayedValue(value, children);
-  const arrowWidth = 24;
-  const horizontalPadding = 16;
-  const width = getTextWidth(text, '400 1rem Roboto') + horizontalPadding * 3 + arrowWidth;
   return (
-    <Wrapper style={{
-      '--arrowWidth': arrowWidth + 'px',
-      '--horizontalPadding': horizontalPadding + 'px',
-      '--selectWidth': width + 'px',
-    }}>
-      <LabelWrapper>{label}
-        <SelectWrapper value={value} onChange={onChange}>
-          {children}
-        </SelectWrapper>
+    <Wrapper>
+      <NativeSelect value={value} onChange={onChange}>
+        {children}
+      </NativeSelect>
+      <PresentationalBit>
+        {text}
         <IconWrapper>
-          <Icon id='chevron-down' size={arrowWidth} strokeWidth={2}></Icon>
+          <Icon id='chevron-down' size={10} strokeWidth={4}></Icon>
         </IconWrapper>
-      </LabelWrapper>
+      </PresentationalBit>
     </Wrapper>
   );
 };
