@@ -14,6 +14,15 @@ const Wrapper = styled.div`
   width: max-content;
 `;
 
+const NativeSelect = styled.select`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+`;
+
 const PresentationalBit = styled.div`
   padding: 12px 16px;
   color: currentColor;
@@ -23,15 +32,9 @@ const PresentationalBit = styled.div`
   font-weight: 400;
 
   padding-right: 52px;
-`;
-
-const NativeSelect = styled.select`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
+  ${NativeSelect}:focus + & {
+    outline: 5px auto -webkit-focus-ring-color;
+  }
 `;
 
 const IconWrapper = styled.div`
