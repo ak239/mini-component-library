@@ -8,19 +8,17 @@ import VisuallyHidden from '../VisuallyHidden';
 
 const STYLE = {
   small: {
-    '--paddingLeft': '24px',
+    '--paddingLeft': '20px',
     '--borderWidth': '1px',
     '--fontSize': (14 / 16) + 'rem',
-    iconSize: 16,
+    iconSize: 18,
     iconStrokeWidth: 1,
   },
   large: {
-    '--paddingLeft': '36px',
+    '--paddingLeft': '24px',
     '--borderWidth': '2px',
     '--fontSize': (18 / 16) + 'rem',
-    '--paddingTop': '2px',
-    '--paddingBottom': '6px',
-    iconSize: 24,
+    iconSize: 19,
     iconStrokeWidth: 2,
   }
 };
@@ -37,6 +35,7 @@ const IconInput = ({
     throw new Error('Unexpected size is passed to IconInput');
   return (
     <Wrapper style={{'--width': width + 'px', ...style}}>
+      <VisuallyHidden>${label}</VisuallyHidden>
       <NativeInput type="text" placeholder={placeholder}></NativeInput>
       <IconWrapper>
         <Icon size={style.iconSize} id={icon} strokeWidth={style.iconStrokeWidth}></Icon>
@@ -45,23 +44,24 @@ const IconInput = ({
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.label`
   position: relative;
   width: var(--width);
   color: ${COLORS.gray500};
+  &:hover {
+    color: black;
+  }
 `;
 
 const NativeInput = styled.input`
   border: none;
   padding-left: var(--paddingLeft);
-  padding-top: var(--paddingTop);
-  padding-bottom: var(--paddingBottom);
   width: 100%;
   border-bottom: solid black var(--borderWidth);
   font-family: Roboto,sans-serif;
   font-size: var(--fontSize);
   font-weight: 700;
-  color: currentColor;
+  color: inherit;
 
   &::placeholder {
     font-weight: 400;
@@ -78,11 +78,9 @@ const NativeInput = styled.input`
 const IconWrapper = styled.div`
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
-  pointer-events: none;
-  ${NativeInput}:hover + & {
-    color: black;
-  }
+  margin: auto;
 `;
 
 export default IconInput;
