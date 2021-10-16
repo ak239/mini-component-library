@@ -7,10 +7,6 @@ import { getDisplayedValue } from "./Select.helpers";
 
 const Wrapper = styled.div`
   position: relative;
-  color: ${COLORS.gray700};
-  &:hover {
-    color: black;
-  }
   width: max-content;
 `;
 
@@ -30,10 +26,15 @@ const PresentationalBit = styled.div`
   border-radius: 8px;
   font-family: Roboto,sans-serif;
   font-weight: 400;
+  color: ${COLORS.gray700};
 
   padding-right: 52px;
   ${NativeSelect}:focus + & {
     outline: 5px auto -webkit-focus-ring-color;
+  }
+
+  ${NativeSelect}:hover + & {
+    color: black;
   }
 `;
 
