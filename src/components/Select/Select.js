@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   &:hover {
     color: black;
   }
+  width: max-content;
 `;
 
 const PresentationalBit = styled.div`
@@ -18,9 +19,10 @@ const PresentationalBit = styled.div`
   color: currentColor;
   background-color: ${COLORS.transparentGray15};
   border-radius: 8px;
-  width: max-content;
   font-family: Roboto,sans-serif;
   font-weight: 400;
+
+  padding-right: 52px;
 `;
 
 const NativeSelect = styled.select`
@@ -33,7 +35,13 @@ const NativeSelect = styled.select`
 `;
 
 const IconWrapper = styled.div`
-  display: inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  margin: auto;
+  width: var(--size);
+  height: var(--size);
 `;
 
 const Select = ({ label, value, onChange, children }) => {
@@ -45,8 +53,8 @@ const Select = ({ label, value, onChange, children }) => {
       </NativeSelect>
       <PresentationalBit>
         {text}
-        <IconWrapper>
-          <Icon id='chevron-down' size={10} strokeWidth={4}></Icon>
+        <IconWrapper style={{'--size': 24 + 'px'}}>
+          <Icon id='chevron-down' size={24} strokeWidth={2}></Icon>
         </IconWrapper>
       </PresentationalBit>
     </Wrapper>
