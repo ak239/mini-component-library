@@ -18,7 +18,7 @@ const PresentationalBit = styled.div`
   color: currentColor;
   background-color: ${COLORS.transparentGray15};
   border-radius: 8px;
-  width: fit-content;
+  width: max-content;
   font-family: Roboto,sans-serif;
   font-weight: 400;
 `;
