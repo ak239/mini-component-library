@@ -13,6 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const SelectWrapper = styled.select`
+  margin-left: 16px;
   border-radius: 8px;
   border: none;
   appearance: none;
@@ -36,6 +37,9 @@ const IconWrapper = styled.div`
   pointer-events: none;
 `;
 
+const LabelWrapper = styled.label`
+`;
+
 const Select = ({ label, value, onChange, children }) => {
   const text = getDisplayedValue(value, children);
   const arrowWidth = 24;
@@ -47,12 +51,14 @@ const Select = ({ label, value, onChange, children }) => {
       '--horizontalPadding': horizontalPadding + 'px',
       '--selectWidth': width + 'px',
     }}>
-      <SelectWrapper value={value} onChange={onChange}>
-        {children}
-      </SelectWrapper>
-      <IconWrapper>
-        <Icon id='chevron-down' size={arrowWidth} strokeWidth={2}></Icon>
-      </IconWrapper>
+      <LabelWrapper>{label}
+        <SelectWrapper value={value} onChange={onChange}>
+          {children}
+        </SelectWrapper>
+        <IconWrapper>
+          <Icon id='chevron-down' size={arrowWidth} strokeWidth={2}></Icon>
+        </IconWrapper>
+      </LabelWrapper>
     </Wrapper>
   );
 };
