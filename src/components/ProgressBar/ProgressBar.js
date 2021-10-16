@@ -33,10 +33,13 @@ const ProgressWrapper = styled.div`
   background-color: ${COLORS.primary};
   width: ${props => props.value + '%'};
   height: 100%;
-  border-top-left-radius: var(--borderRadius);
-  border-bottom-left-radius: var(--borderRadius);
-  border-top-right-radius: ${props => props.value === 100 && 'var(--borderRadius)'};
-  border-bottom-right-radius: ${props => props.value === 100 && 'var(--borderRadius)'};
+`;
+
+const BarWrapper = styled.div`
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--borderRadius);
 `;
 
 const ProgressBar = ({ value, size }) => {
@@ -47,7 +50,9 @@ const ProgressBar = ({ value, size }) => {
       aria-valuemax={100}
       aria-valuemin={0}
       style={SIZES[size]}>
-      <ProgressWrapper value={value}></ProgressWrapper>
+      <BarWrapper>
+        <ProgressWrapper value={value}></ProgressWrapper>
+      </BarWrapper>
       <VisuallyHidden>{value}%</VisuallyHidden>
     </Wrapper>
   );
